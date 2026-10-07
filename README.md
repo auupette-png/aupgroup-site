@@ -1,7 +1,9 @@
-# aupgroup-site
+# AUP Group · aupgroup.fr
 
-Site internet d'AUP Group, par Laurette Dubreuil : conception, outillage et pilotage de programmes de formation pour coachs et formateurs.
+Site de Laurette Dubreuil (AUP Group) : site statique (HTML, CSS, JavaScript), sans étape de build.
 
-- Domaine : aupgroup.fr
-- Hébergement : Vercel
-- Réservation de l'audit : https://calendly.com/laurettedubreuil/audit-d-organisation-offert
+- `index.html` : accueil (film d'ouverture piloté par le défilement)
+- pages : accompagnements (`programme-cle-en-main`, `csm-pilotage`, `evenements`, `organisation-ia`), `realisations`, `a-propos`, `quiz`, pages légales
+- `assets/` : images et vidéos
+
+Hébergement : Vercel (déploiement automatique depuis la branche `main`).

@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CSM et pilotage externalisé · AUP Group</title>
+<meta name="description" content="Suivi individuel, relances, satisfaction et reporting mensuel : une Customer Success Manager dédiée pour que vos élèves avancent et restent.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500&display=swap">
+<style>
+/* Inner page for the flagship offer. Same system as the home page: white, navy, brass, Barlow Condensed + Inter.
+ */
+:root{
+  --paper:#FFFFFF;--paper-2:#F4F5F8;--ink:#0F1B4C;--ink-2:#3A4570;--brass:#A9834C;--brass-l:#D9BE8C;
+  --rule:rgba(15,27,76,.16);--rule-w:rgba(255,255,255,.2);
+  --display:"Barlow Condensed","Arial Narrow",sans-serif;--sans:"Inter",system-ui,sans-serif;
+  --pad:clamp(16px,4.2vw,56px);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video{display:block}
+.cap{font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.cap.b{color:var(--brass)}
+.disp{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.015em;line-height:1;margin:0}
+.arrow{display:inline-block;width:16px;height:1px;background:currentColor;position:relative;flex:none;transition:width .4s}
+.arrow::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+a:hover > .arrow{width:28px}
+.btn-s{display:inline-flex;align-items:center;gap:16px;background:var(--ink);color:var(--paper);padding:20px 30px;min-height:44px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;transition:background .4s}
+.btn-s:hover{background:#1B2A66}
+.link{display:inline-flex;align-items:center;gap:14px;font-size:13px;letter-spacing:.06em;padding:12px 0;min-height:44px}
+.pill{display:inline-flex;align-items:center;gap:12px;border:1px solid currentColor;border-radius:999px;padding:11px 22px;min-height:44px;font-size:13px;transition:background .4s,color .4s}
+.pill:hover{background:var(--ink);color:var(--paper)}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:1px solid currentColor;outline-offset:4px}
+
+/* header (same as home) */
+header{position:fixed;top:0;left:0;right:0;z-index:30;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 20px) var(--pad) 14px;transition:transform .6s cubic-bezier(.2,.7,.1,1),background .4s}
+header.hide{transform:translateY(-110%)}
+header.solid{background:rgba(255,255,255,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.logo{display:flex;align-items:baseline;gap:12px;white-space:nowrap}
+.logo b{font-family:var(--display);font-weight:600;font-size:22px;letter-spacing:.16em;text-transform:uppercase}
+.logo small{font-size:10px;letter-spacing:.24em;text-transform:uppercase;opacity:.65}
+nav.main{display:flex;gap:40px;font-size:13px;letter-spacing:.04em}
+nav.main a{position:relative;padding:12px 0}
+nav.main a::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s cubic-bezier(.2,.7,.1,1)}
+nav.main a:hover::after,nav.main a[aria-current]::after{transform:scaleX(1);transform-origin:left}
+.hright{justify-self:end}
+
+/* hero: the last image of the film, full bleed, title over its white side */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:16vh var(--pad) 10vh;overflow:hidden}
+.hero picture,.hero picture img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%}
+.hero picture img{transform:scale(1.08);animation:settle 2.4s cubic-bezier(.2,.7,.1,1) .1s forwards}
+@keyframes settle{to{transform:scale(1)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.86) 34%,rgba(255,255,255,0) 58%)}
+.hero .in{position:relative;z-index:2;max-width:min(560px,42vw)}
+.crumb{display:flex;gap:10px;align-items:center;color:var(--ink-2)}
+.crumb a:hover{color:var(--ink)}
+.hero h1{font-size:clamp(38px,4vw,68px);margin:26px 0 0}
+.hero p.l{margin:26px 0 0;font-size:18px;max-width:44ch;color:var(--ink-2)}
+.hero .ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;margin-top:36px}
+.hero .facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:40px;padding-top:20px;border-top:1px solid var(--rule);font-size:14px;color:var(--ink-2)}
+.hero .facts span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--brass);transform:rotate(45deg);margin-right:10px;vertical-align:2px}
+.hero .who{position:absolute;z-index:2;left:var(--pad);bottom:5vh;color:var(--ink-2)}
+
+/* sections */
+.sec{padding:16vh var(--pad)}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:6vh;border-top:1px solid var(--rule);padding-top:18px}
+.sec h2{font-size:clamp(34px,4.2vw,72px);max-width:18ch;margin:0 0 8vh}
+
+/* what you receive: sticky intro + list of eight deliverables */
+#recevez{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:6vw;align-items:start}
+#recevez .stick{position:sticky;top:16vh}
+#recevez .stick h2{margin:22px 0 26px}
+#recevez .stick p{margin:0;max-width:40ch;color:var(--ink-2);font-size:17px}
+.deliv{list-style:none;margin:0;padding:0;counter-reset:d;border-top:1px solid var(--rule)}
+.deliv li{display:grid;grid-template-columns:56px minmax(0,1fr);gap:4px 10px;padding:28px 0;border-bottom:1px solid var(--rule)}
+.deliv li::before{counter-increment:d;content:"0" counter(d);grid-row:1/span 2;font-size:11px;letter-spacing:.2em;color:var(--brass);padding-top:8px}
+.deliv b{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(22px,1.9vw,30px);letter-spacing:.02em;line-height:1.1}
+.deliv span{color:var(--ink-2);max-width:52ch}
+.deliv li.az b::after{content:var(--tag,"De A à Z");margin-left:14px;vertical-align:4px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.14em;color:var(--brass);border:1px solid currentColor;padding:3px 8px}
+
+/* two formulas */
+#formules{background:var(--paper-2)}
+.forms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.form{background:#fff;border:1px solid var(--rule);padding:44px;display:flex;flex-direction:column;gap:30px;transition:border-color .5s,transform .6s cubic-bezier(.2,.7,.1,1)}
+.form:hover{border-color:var(--ink);transform:translateY(-4px)}
+.form.dark{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.form h3{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(34px,3.4vw,56px);letter-spacing:.02em;line-height:1;margin:16px 0 0}
+.form .for{margin:16px 0 0;font-size:18px;color:var(--ink-2);max-width:34ch}
+.form.dark .for{color:rgba(255,255,255,.82)}
+.form dl{margin:0;border-top:1px solid var(--rule)}
+.form.dark dl{border-color:var(--rule-w)}
+.form dl div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--rule)}
+.form.dark dl div{border-color:var(--rule-w)}
+.form dt{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding-top:3px;color:var(--brass)}
+.form.dark dt{color:var(--brass-l)}
+.form dd{margin:0;font-size:15px}
+.form .tag{color:var(--brass)}
+.form.dark .tag{color:var(--brass-l)}
+.prices{margin-top:16px;background:#fff;border:1px solid var(--rule)}
+.prices summary{padding:24px 34px}
+.prices .pbody{padding:0 34px 30px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 40px}
+.prices .pbody div{border-top:1px solid var(--rule);padding-top:16px}
+.prices .pbody b{display:block;font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(24px,2.2vw,34px);letter-spacing:.02em;margin-top:6px}
+.prices .pbody p{grid-column:1/-1;margin:6px 0 0;font-size:14px;color:var(--ink-2)}
+
+/* project timeline on navy */
+#deroule{background:var(--ink);color:var(--paper)}
+#deroule .sec-head{border-color:var(--rule-w)}
+.tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;position:relative}
+.tl::before{content:"";position:absolute;left:0;right:0;top:7px;height:1px;background:var(--rule-w)}
+.tl::after{content:"";position:absolute;left:0;top:7px;height:1px;width:var(--tl,0%);background:var(--brass-l);transition:width 2.2s cubic-bezier(.2,.7,.1,1)}
+.tl li{position:relative;padding:44px 28px 0 0}
+.tl li::before{content:"";position:absolute;left:0;top:3px;width:9px;height:9px;background:var(--ink);border:1px solid var(--brass-l);transform:rotate(45deg)}
+.tl .cap{display:block;color:var(--brass-l);margin-bottom:12px}
+.tl b{display:block;font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(22px,2vw,32px);letter-spacing:.02em;line-height:1.05;margin-bottom:12px}
+.tl span{display:block;font-size:15px;color:rgba(255,255,255,.78);max-width:28ch}
+.tl li.key b{color:var(--brass-l)}
+
+/* case study */
+#cas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center}
+#cas figure{margin:0;aspect-ratio:4/5;overflow:hidden;max-height:82vh;justify-self:start;width:100%}
+#cas figure img{width:100%;height:100%;object-fit:cover;object-position:45% 50%;transform:scale(1.1);transition:transform 1.6s cubic-bezier(.2,.7,.1,1)}
+#cas figure.in img{transform:scale(1)}
+#cas h2{font-size:clamp(30px,3.4vw,58px);margin:22px 0 26px;max-width:16ch}
+#cas p{margin:0 0 30px;max-width:46ch;color:var(--ink-2);font-size:17px}
+
+/* faq */
+#faq{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:6vw;border-top:1px solid var(--rule)}
+#faq h2{font-size:clamp(30px,3.4vw,58px);margin-top:22px}
+details{border-bottom:1px solid var(--rule)}
+#faq details:first-of-type{border-top:1px solid var(--rule)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:24px 0;min-height:44px;font-size:18px}
+summary::-webkit-details-marker{display:none}
+summary i{position:relative;width:14px;height:14px;flex:none}
+summary i::before,summary i::after{content:"";position:absolute;left:0;right:0;top:6px;height:1px;background:currentColor;transition:transform .4s}
+summary i::after{transform:rotate(90deg)}
+details[open] summary i::after{transform:rotate(0)}
+#faq details p{margin:0 0 24px;max-width:58ch;color:var(--ink-2)}
+.prices{border-bottom:1px solid var(--rule)}
+
+/* closing call to action */
+#audit{background:var(--ink);color:var(--paper)}
+#audit .sec-head{border-color:var(--rule-w)}
+#audit h2{font-size:clamp(40px,6vw,108px);max-width:16ch;margin:24px 0 5vh}
+#audit p{margin:0 0 7vh;font-size:18px;max-width:50ch;color:rgba(255,255,255,.82)}
+#audit .btn-s{background:var(--paper);color:var(--ink)}
+.aud-cta{display:flex;flex-wrap:wrap;align-items:center;gap:24px}
+.next{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:6vh var(--pad);border-top:1px solid var(--rule)}
+.next a{display:flex;align-items:center;gap:20px}
+.next .disp{font-size:clamp(24px,2.6vw,42px)}
+
+footer{padding:12vh var(--pad) 40px;background:#0B1438;color:var(--paper)}
+.f-top{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr));gap:40px;padding-bottom:10vh}
+.f-top .logo{white-space:normal;display:block;min-width:0}
+.f-top .logo b{font-size:clamp(30px,4vw,60px)}
+.f-top > div{min-width:0}
+.f-top ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.f-bot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;border-top:1px solid rgba(255,255,255,.2);padding-top:22px;opacity:.7}
+.f-bot div{display:flex;gap:24px;flex-wrap:wrap}
+
+.rv{opacity:0;transform:translateY(36px);transition:opacity 1.2s cubic-bezier(.2,.7,.1,1),transform 1.2s cubic-bezier(.2,.7,.1,1)}
+.rv.in{opacity:1;transform:none}
+.hero .in > *{opacity:0;transform:translateY(24px);animation:up 1.2s cubic-bezier(.2,.7,.1,1) forwards}
+.hero .in > *:nth-child(2){animation-delay:.12s}.hero .in > *:nth-child(3){animation-delay:.24s}.hero .in > *:nth-child(4){animation-delay:.36s}.hero .in > *:nth-child(5){animation-delay:.48s}
+@keyframes up{to{opacity:1;transform:none}}
+
+@media (max-width:900px){
+  nav.main{display:none}
+  header{grid-template-columns:1fr auto}
+  .logo small{display:none}
+  .logo b{font-size:18px}
+  .pill{padding:10px 14px;font-size:12px}
+  .hero{display:block;min-height:0;padding:0 0 8vh}
+  .hero picture{position:relative;display:block;height:58svh}
+  .hero picture img{object-position:50% 70%}
+  .hero::before{top:auto;height:58svh;bottom:auto;background:none}
+  .hero .in{padding:28px var(--pad) 0}
+  .next{flex-direction:column;align-items:flex-start}
+  .hero .in{max-width:none}
+  .hero h1{font-size:clamp(32px,8.6vw,46px)}
+  .hero p.l{font-size:16px}
+  .hero .who{display:none}
+  .sec{padding:12vh var(--pad)}
+  .sec h2,#cas h2,#faq h2{font-size:clamp(26px,7vw,36px)!important;overflow-wrap:break-word}
+  #audit h2{font-size:clamp(32px,9vw,48px)!important}
+  .sec-head{flex-direction:column;gap:6px}
+  #recevez,#faq,#cas{grid-template-columns:1fr}
+  #recevez .stick{position:static}
+  .forms{grid-template-columns:1fr}
+  .form{padding:30px}
+  .form dl div{grid-template-columns:1fr;gap:4px}
+  .prices summary{padding:20px 24px}
+  .prices .pbody{grid-template-columns:1fr;padding:0 24px 24px}
+  .tl{grid-template-columns:1fr;gap:0}
+  .tl::before,.tl::after{left:4px;right:auto;top:0;bottom:0;width:1px;height:auto}
+  .tl::after{height:var(--tl,0%);bottom:auto}
+  .tl li{padding:0 0 34px 40px}
+  .tl li::before{top:6px;left:0}
+  #cas figure{aspect-ratio:4/3}
+  .f-top{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.hero .in > *{opacity:1;transform:none}}
+
+/* split hero for the other offer pages: text left, framed picture right */
+.hero.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:5vw;align-items:center;padding:14vh var(--pad) 8vh}
+.hero.split::before{display:none}
+.hero.split .in{max-width:600px}
+.hero.split figure{position:relative;margin:0;height:72vh;overflow:hidden;box-shadow:0 40px 90px -50px rgba(15,27,76,.5)}
+.hero.split figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:settle 2.4s cubic-bezier(.2,.7,.1,1) .1s forwards}
+/* scroll-driven film (Organisation et IA), same mechanics as the home intro */
+.scrub{position:relative;height:620vh}
+.sc-stage{position:sticky;top:0;height:100vh;overflow:hidden;background:var(--paper)}
+.sc-frame{position:absolute;inset:0;clip-path:inset(var(--ct,16vh) var(--cr,56px) var(--cb,14vh) var(--cl,50vw) round 2px);will-change:clip-path;background:#fff}
+.sc-frame img,.sc-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sc-frame img{transition:opacity .6s}.sc-frame.ready img{opacity:0}
+.sc-frame[data-shift-end] video,.sc-frame[data-shift-end] img{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%);mask-image:linear-gradient(90deg,transparent 0,#000 14%)}
+.sc-veil{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(90deg,rgba(255,255,255,.95) 0%,rgba(255,255,255,.84) 30%,rgba(255,255,255,0) 54%)}
+.sc-chap{position:absolute;left:var(--pad);top:50%;width:min(40vw,600px);transform:translateY(-50%);opacity:0;visibility:hidden}
+.sc-chap h1{font-size:clamp(34px,3.6vw,62px);margin:22px 0 0}
+.sc-chap h2{font-size:clamp(30px,3.2vw,54px);margin:18px 0 0;line-height:1.05}
+.sc-chap p{margin:22px 0 0;font-size:17px;max-width:42ch;color:var(--ink-2)}
+.sc-chap .ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;margin-top:30px}
+.sc-chap .facts{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:32px;padding-top:18px;border-top:1px solid var(--rule);font-size:14px;color:var(--ink-2)}
+.sc-chap .facts span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--brass);transform:rotate(45deg);margin-right:10px;vertical-align:2px}
+.sc-hint{position:absolute;left:var(--pad);bottom:5vh;display:flex;align-items:center;gap:14px;color:var(--ink-2)}
+.sc-hint i{display:block;width:44px;height:1px;background:currentColor}
+@media (max-width:900px){
+  .scrub{height:560vh}
+  .sc-veil{background:linear-gradient(0deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.86) 36%,rgba(255,255,255,0) 60%)}
+  .sc-chap{top:auto;bottom:4vh;right:var(--pad);width:auto;transform:none}
+  .sc-chap.c0{top:12vh;bottom:auto}
+  .sc-chap h1{font-size:clamp(28px,7.6vw,38px)}
+  .sc-chap h2{font-size:clamp(24px,6.8vw,34px)}
+  .sc-chap p{font-size:15px;margin-top:12px}
+  .sc-chap.c0 .facts{display:none}
+  .sc-hint{display:none}
+}
+/* motion film in the Organisation et IA hero: plays once, texts synced to the film, stops on the connected system */
+.hero.split.has-mo{grid-template-columns:minmax(0,1fr);gap:6vh;padding-bottom:6vh}
+.hero.split.has-mo .in{max-width:900px}
+.hero.split figure.mo{background:#fff;height:auto;aspect-ratio:16/9}
+@media (max-width:900px){.hero.split.has-mo figure.mo{order:0;aspect-ratio:4/5}.mo-txt span{font-size:22px}}
+.mo video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mo-txt{position:absolute;left:0;right:0;bottom:0;padding:70px 28px 26px;background:linear-gradient(0deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.78) 55%,rgba(255,255,255,0) 100%);min-height:150px;pointer-events:none}
+.mo-txt span{position:absolute;left:28px;right:28px;bottom:26px;font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.02em;font-size:clamp(24px,2.3vw,38px);line-height:1.05;color:var(--ink);opacity:0;transform:translateY(14px);transition:opacity .5s,transform .7s cubic-bezier(.2,.7,.1,1)}
+.mo-txt span.on{opacity:1;transform:none}
+.mo-txt span.end{color:var(--ink)}
+.mo-replay{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.9);border:1px solid var(--rule);color:var(--ink);padding:10px 16px;min-height:44px;cursor:pointer}
+/* in-page video (Organisation et IA) */
+.zg{position:relative;margin:0;aspect-ratio:16/9;background:var(--ink);overflow:hidden;box-shadow:0 40px 90px -50px rgba(15,27,76,.5)}
+.zg.vert{aspect-ratio:9/16;width:min(100%,calc(82svh * 9 / 16));margin:0 auto}
+.zg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.zg-play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;border:0;cursor:pointer;color:#fff;background:linear-gradient(0deg,rgba(15,27,76,.55),rgba(15,27,76,.15));transition:background .4s}
+.zg-play:hover{background:linear-gradient(0deg,rgba(15,27,76,.7),rgba(15,27,76,.25))}
+.zg-ico{width:84px;height:84px;border:1px solid rgba(255,255,255,.8);border-radius:50%;position:relative;transition:transform .5s cubic-bezier(.2,.7,.1,1)}
+.zg-ico::after{content:"";position:absolute;left:34px;top:27px;border-left:22px solid #fff;border-top:15px solid transparent;border-bottom:15px solid transparent}
+.zg-play:hover .zg-ico{transform:scale(1.08)}
+.zg.on .zg-play{display:none}
+/* before / after */
+.ba{border-top:1px solid var(--rule)}
+.ba-row{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);gap:24px;align-items:center;padding:26px 0;border-bottom:1px solid var(--rule)}
+.ba-head{padding:0 0 14px;color:var(--ink-2)}
+.ba-row .was{color:var(--ink-2);font-size:17px}
+.ba-row .now{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(20px,1.7vw,27px);letter-spacing:.02em;line-height:1.1}
+.ba-row .arrow{width:28px;color:var(--brass)}
+.note-l{margin:18px 0 0;font-size:14px;color:var(--ink-2)}
+/* feature block (fiche de suivi, Scale Day) */
+.feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,96px);align-items:center}
+.feat figure{margin:0;aspect-ratio:16/10;overflow:hidden;background:var(--paper-2)}
+.feat figure img{width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 1.6s cubic-bezier(.2,.7,.1,1)}
+.feat figure.in img{transform:scale(1)}
+.feat h2{font-size:clamp(30px,3.4vw,58px)!important;margin:22px 0 26px!important;max-width:16ch}
+.feat p{margin:0 0 18px;max-width:46ch;color:var(--ink-2);font-size:17px}
+.feat q{display:block;font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(22px,2vw,32px);line-height:1.1;margin:26px 0;quotes:"« " " »";color:var(--brass)}
+.sheet{background:var(--paper-2);aspect-ratio:16/10;padding:clamp(20px,3vw,40px);display:grid;align-content:start;gap:14px;font-size:14px}
+.sheet .row{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:12px 16px;background:#fff;border:1px solid var(--rule)}
+.sheet .row span:first-child{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+.sheet .pbar{height:4px;background:var(--rule);margin-top:6px;position:relative}.sheet .pbar i{position:absolute;inset:0 auto 0 0;background:var(--ink)}
+.sheet .who{display:flex;justify-content:space-between;align-items:baseline}
+.sheet .who b{font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:26px}
+@media (max-width:900px){
+  .hero.split{grid-template-columns:1fr;padding:0 0 8vh;gap:0}
+  .hero.split figure{height:48svh;order:-1;box-shadow:none}
+  .hero.split .in{padding:28px var(--pad) 0}
+  .ba-row{grid-template-columns:1fr;gap:6px}
+  .ba-row .arrow{width:16px;transform:rotate(90deg);margin:12px 0 14px 4px}
+  .ba-head{display:none}
+  .feat{grid-template-columns:1fr}
+  .sheet .row{grid-template-columns:1fr;gap:2px}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <a class="logo" href="index.html"><b>AUP Group</b><small>par Laurette Dubreuil</small></a>
+  <nav class="main" aria-label="Navigation">
+    <a href="index.html#offres" aria-current="page">Accompagnements</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="a-propos.html">À propos</a>
+    <a href="index.html#quiz">Ressources</a>
+  </nav>
+  <div class="hright"><a class="pill" href="#audit">Audit offert <span class="arrow"></span></a></div>
+</header>
+
+<main>
+  <section class="scrub" id="scrub" style="height:520vh" aria-label="CSM et pilotage externalisé">
+    <div class="sc-stage">
+      <div class="sc-frame" id="scf" data-shift="14" data-shift-end="20">
+        <img id="scposter" src="assets/csm-scrub-start.jpg" alt="">
+        <video id="scv" muted playsinline preload="auto" data-src="assets/csm-scrub.mp4" aria-label="Laurette, de dos, en visio avec une élève ; autour d'elle apparaissent un indicateur de satisfaction qui monte, une courbe de progression et un calendrier de séances"></video>
+      </div>
+      <div class="sc-veil" id="scveil"></div>
+      <div class="sc-chap c0" data-in="0" data-out=".08">
+        <div class="crumb cap"><a href="index.html#offres">Accompagnements</a><span>/</span><span style="color:var(--brass)">Programme déjà lancé</span></div>
+        <h1 class="disp">Vos élèves avancent et restent. Vous gardez votre temps pour transmettre.</h1>
+        <p>Je deviens la Customer Success Manager de votre programme. Je suis chaque élève, je relance ceux qui décrochent et je vous dis chaque mois ce qui marche et ce qui coince.</p>
+        <div class="ctas"><a class="btn-s" href="https://calendly.com/laurettedubreuil/audit-d-organisation-offert" target="_blank" rel="noopener">Réserver mon audit offert <span class="arrow"></span></a><a class="link" href="#formules">Voir les formules <span class="arrow"></span></a></div>
+        <div class="facts"><span>Engagement de 3 mois</span><span>Tout à distance</span></div>
+      </div>
+      <div class="sc-chap" data-in=".16" data-out=".5"><span class="cap b">Le suivi</span><h2 class="disp">Chaque élève suivi, relancé et écouté.</h2></div>
+      <div class="sc-chap" data-in=".58" data-out="1.3"><span class="cap b">Le résultat</span><h2 class="disp">Une satisfaction mesurée, des élèves qui vont au bout.</h2><div class="ctas"><a class="link" href="#change">Voir ce qui change pour vous <span class="arrow"></span></a></div></div>
+      <div class="sc-hint cap" id="schint"><i></i>Faites défiler</div>
+    </div>
+  </section>
+  <script>
+  (function(){
+    var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function clamp(v,a,b){return Math.max(a,Math.min(b,v));}function sm(t){t=clamp(t,0,1);return t*t*(3-2*t);}function range(p,a,b){return sm((p-a)/(b-a));}function lerp(a,b,t){return a+(b-a)*t;}
+    var sec=document.getElementById('scrub'),fr=document.getElementById('scf'),v=document.getElementById('scv'),veil=document.getElementById('scveil'),hint=document.getElementById('schint'),poster=document.getElementById('scposter');
+    var chaps=[].slice.call(sec.querySelectorAll('.sc-chap')),ready=false,P=0;
+    var narrow=function(){return innerWidth<=900;};
+    if(reduce){poster.src='assets/csm-scrub-end.jpg';}
+    else{var src=v.dataset.src;fetch(src).then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(b){v.src=URL.createObjectURL(b);v.load();}).catch(function(){v.src=src;v.load();});}
+    v.addEventListener('loadeddata',function(){ready=true;fr.classList.add('ready');});
+    function prog(){var r=sec.getBoundingClientRect(),span=r.height-innerHeight;return span>0?clamp(-r.top/span,0,1):0;}
+    function loop(){
+      var target=prog();P=reduce?target:P+(target-P)*.12;var p=P;
+      var g=range(p,.02,.1);
+      if(narrow()){fr.style.setProperty('--ct',lerp(62,0,g)+'vh');fr.style.setProperty('--cb',lerp(4,0,g)+'vh');fr.style.setProperty('--cl',lerp(16,0,g)+'px');fr.style.setProperty('--cr',lerp(16,0,g)+'px');}
+      else{fr.style.setProperty('--ct',lerp(16,0,g)+'vh');fr.style.setProperty('--cb',lerp(14,0,g)+'vh');fr.style.setProperty('--cl',lerp(50,0,g)+'vw');fr.style.setProperty('--cr',lerp(56,0,g)+'px');}
+      var sh=+(fr.dataset.shift||0),she=+(fr.dataset.shiftEnd||0);if((sh||she)&&!narrow()){var tx='translateX('+lerp(sh,she,g)+'vw)';v.style.transform=tx;poster.style.transform=tx;}
+      veil.style.opacity=range(p,.08,.13);
+      if(ready&&v.duration){var t=clamp((p-.1)/.82,0,1)*(v.duration-.06);if(Math.abs(v.currentTime-t)>.015){try{v.currentTime=t;}catch(e){}}}
+      chaps.forEach(function(c,i){var a=+c.dataset.in,b=+c.dataset.out;var fin=i===0?1:range(p,a,a+.03),fout=1-range(p,b-.03,b),o=Math.min(fin,fout);
+        c.style.opacity=o;c.style.visibility=o>.01?'visible':'hidden';var dy=(1-fin)*28-(1-fout)*28;c.style.transform=narrow()?'translateY('+dy+'px)':'translateY(calc(-50% + '+dy+'px))';});
+      hint.style.opacity=1-range(p,.005,.03);
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
+  </script>
+
+
+  <section id="change" class="sec" aria-label="Ce qui change pour vous">
+    <div class="sec-head cap"><span>Ce qui change pour vous</span><span>Avant et après un suivi dédié</span></div>
+    <h2 class="disp">Ce qui change pour vous.</h2>
+    <div class="ba">
+      <div class="ba-row ba-head cap"><span>Aujourd'hui</span><span></span><span>Avec un suivi dédié</span></div>
+      <div class="ba-row"><span class="was">Vous découvrez trop tard qu'un élève a décroché</span><span class="arrow"></span><span class="now">Les élèves inactifs ou en difficulté sont repérés et relancés</span></div><div class="ba-row"><span class="was">La satisfaction se mesure quand on y pense</span><span class="arrow"></span><span class="now">Questionnaires et NPS envoyés à chaque étape du parcours</span></div><div class="ba-row"><span class="was">Vous pilotez sans chiffres</span><span class="arrow"></span><span class="now">Un reporting mensuel : complétion, engagement, satisfaction, alertes, recommandations</span></div><div class="ba-row"><span class="was">Vous briefez vous-même vos coachs</span><span class="arrow"></span><span class="now">Planning, briefs et comptes rendus gérés pour vous</span></div>
+    </div>
+    <p class="note-l">La dernière ligne correspond à la formule Pilotage.</p>
+  </section>
+
+  <section id="formules" class="sec" aria-label="Les formules">
+    <div class="sec-head cap"><span>Deux formules</span><span>Le prix exact est fixé après l'audit offert</span></div>
+    <h2 class="disp">Deux formules selon la taille de votre programme.</h2>
+    <div class="forms">
+      <article class="form">
+        <div><span class="cap tag">Vous voulez des élèves suivis</span><h3>Suivi</h3><p class="for">Chaque élève suivi, relancé et écouté, avec un point chaque mois.</p></div>
+        <dl><div><dt>Inclus</dt><dd>Suivi individuel, relances et alertes, satisfaction, reporting mensuel</dd></div></dl>
+      </article>
+      <article class="form dark">
+        <div><span class="cap tag">Vous avez une équipe à coordonner</span><h3>Pilotage</h3><p class="for">Le suivi des élèves, plus la coordination de vos coachs et formateurs.</p></div>
+        <dl><div><dt>Inclus</dt><dd>Tout le Suivi, plus le management des coachs et formateurs, les procédures et l'amélioration continue du parcours</dd></div></dl>
+      </article>
+    </div>
+    <details class="prices">
+      <summary>Voir les tarifs<i></i></summary>
+      <div class="pbody"><div><span class="cap">Formule Suivi</span><b>À partir de 1 600 € par mois</b></div><div><span class="cap">Formule Pilotage</span><b>À partir de 3 200 € par mois</b></div>
+        <p>Prix nets, TVA non applicable. Le prix exact est fixé dans le devis, après l'audit offert. Engagement minimum de 3 mois, le temps d'installer le suivi et d'en mesurer les effets.</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="fiche" class="sec feat" aria-label="La fiche de suivi">
+    <div class="sheet" aria-label="Exemple de fiche de suivi avec des données fictives">
+      <div class="who"><b>Camille M.</b><span class="cap">Données fictives</span></div>
+      <div class="row"><span>Avancement</span><span>Chapitre 3 sur 6<div class="pbar"><i style="width:48%"></i></div></span></div>
+      <div class="row"><span>Exercices rendus</span><span>7 sur 9</span></div>
+      <div class="row"><span>Coachings</span><span>2 réalisés · prochain le 14</span></div>
+      <div class="row"><span>Dernier échange</span><span>Relance après 10 jours sans connexion, réponse le lendemain</span></div>
+    </div>
+    <div>
+      <span class="cap b">Le suivi au quotidien</span>
+      <h2 class="disp">Une fiche de suivi pour chaque élève.</h2>
+      <p>Chaque élève a sa fiche de suivi : avancement, exercices rendus, coachings, échanges. Vos coachs la consultent en lecture seule, sans licence supplémentaire à payer.</p>
+    </div>
+  </section>
+
+  <section id="faq" class="sec" aria-label="Questions fréquentes">
+    <div><span class="cap">Questions fréquentes</span><h2 class="disp">Vos questions sur le suivi.</h2></div>
+    <div><details><summary>Parlez-vous directement à mes élèves ?<i></i></summary><p>Oui, au nom de votre programme et avec le ton que nous définissons ensemble. Vos élèves ont une interlocutrice identifiée.</p></details><details><summary>Sur quels outils travaillez-vous ?<i></i></summary><p>J'ai mes outils favoris, mais je m'adapte à vos préférences et à ce que vous avez déjà en place. Je choisis les abonnements avec vous en pensant au long terme, pour qu'ils restent adaptés à votre taille, sans licences inutiles.</p></details><details><summary>Puis-je commencer par le Suivi et passer au Pilotage ensuite ?<i></i></summary><p>Oui, à tout moment. Beaucoup de programmes commencent par le Suivi, puis passent au Pilotage quand l'équipe de coachs s'agrandit.</p></details></div>
+  </section>
+
+  <section id="audit" class="sec" aria-label="Audit offert">
+    <div class="sec-head cap"><span>Première étape</span><span>Gratuit et sans engagement</span></div>
+    <h2 class="disp">Voyons comment vos élèves avancent aujourd'hui.</h2>
+    <p>Pendant l'audit offert, nous regardons le parcours de vos élèves et je vous recommande la formule adaptée, avec son prix.</p>
+    <div class="aud-cta"><a class="btn-s" href="https://calendly.com/laurettedubreuil/audit-d-organisation-offert" target="_blank" rel="noopener">Réserver mon audit offert <span class="arrow"></span></a><span class="cap">Une heure, en visio</span></div>
+  </section>
+
+  <div class="next">
+    <span class="cap">Vous réunissez vos élèves en présentiel ?</span>
+    <a href="evenements.html"><span class="disp">Événements et communauté</span><span class="arrow"></span></a>
+  </div>
+</main>
+
+<footer>
+  <div class="f-top">
+    <div class="logo"><b>AUP Group</b><p style="margin:14px 0 0;max-width:34ch;opacity:.8">Des programmes de formation qui tiennent leur promesse, de l'idée jusqu'à la certification.</p></div>
+    <div><span class="cap">Contact</span><ul><li><a href="https://calendly.com/laurettedubreuil/audit-d-organisation-offert" target="_blank" rel="noopener">Réserver mon audit offert</a></li><li><a href="mailto:contact@aupgroup.fr">contact@aupgroup.fr</a></li><li><a href="https://www.linkedin.com/in/laurettedubreuil/" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+    <div><span class="cap">Navigation</span><ul><li><a href="index.html#offres">Accompagnements</a></li><li><a href="realisations.html">Réalisations</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="index.html#quiz">Ressources</a></li></ul></div>
+  </div>
+  <div class="f-bot cap"><span>AUP Group · Laurette Dubreuil</span><div><a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité</a><a href="cgv.html">CGV</a></div></div>
+</footer>
+
+<script>
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+  var $=function(id){return document.getElementById(id);};
+
+  var hdr=$('hdr'),lastY=0;
+  addEventListener('scroll',function(){var y=scrollY;hdr.classList.toggle('hide',y>lastY&&y>200);hdr.classList.toggle('solid',y>60);lastY=y;},{passive:true});
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');if(id.length<2)return;var el=document.querySelector(id);if(!el)return;e.preventDefault();scrollTo({top:el.getBoundingClientRect().top+scrollY,behavior:reduce?'auto':'smooth'});});});
+
+  /* reveals */
+  var els=document.querySelectorAll('.sec-head,.sec h2,.stick p,.deliv li,.form,.prices,.tl li,#cas p,#cas .link,#faq details,#audit p,.aud-cta,#casimg,.feat figure,.ba-row,.sheet,.feat p');
+  els.forEach(function(e){e.classList.add('rv');});
+  var tl=$('tl')||document.createElement('div');
+  if('IntersectionObserver' in window&&!reduce){
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){io.observe(e);});
+    var io2=new IntersectionObserver(function(es){if(es[0].isIntersecting){tl.style.setProperty('--tl','100%');io2.disconnect();}},{threshold:.4});io2.observe(tl);
+  } else {els.forEach(function(e){e.classList.add('in');});tl.style.setProperty('--tl','100%');}
+
+})();
+</script>
+</body>
+</html>
