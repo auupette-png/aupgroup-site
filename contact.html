@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact · AUP Group</title>
+<meta name="description" content="Parlons de votre programme : réservez un premier échange de 30 minutes ou écrivez-moi.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Cpath d=%22M20 2 C21 14 26 19 38 20 C26 21 21 26 20 38 C19 26 14 21 2 20 C14 19 19 14 20 2 Z%22 fill=%22%230000FE%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap"><nav>
+  <a class="logo" href="index.html">AUP Group<i>.</i><small>Laurette Dubreuil</small></a>
+  <ul><li><a href="customer-success.html">Customer Success</a></li><li><a href="delivery.html">Delivery</a></li><li><a href="realisations.html">Réalisations</a></li><li><a href="ressources.html">Ressources</a></li><li><a href="a-propos.html">À propos</a></li></ul>
+  <a class="btn pri sm" href="contact.html">Parlons de votre programme →</a>
+</nav></div>
+
+<div class="wrap"><header class="typo-hero" style="padding-bottom:40px">
+  <div class="deco" style="right:-150px;top:30px;width:140px"><svg viewBox="0 0 160 60" aria-hidden="true"><path d="M4 40 C 30 10, 50 56, 76 26 S 120 4, 156 30" stroke="#E80675" stroke-width="5" fill="none" stroke-linecap="round"/></svg></div>
+  <span class="hand b">Contact</span>
+  <h1 style="margin:0">Parlons de <span class="c">votre programme</span><svg class="spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2 C21 14 26 19 38 20 C26 21 21 26 20 38 C19 26 14 21 2 20 C14 19 19 14 20 2 Z" fill="#E80675"/></svg></h1>
+  <p class="lead" style="margin:0">Où il en est, ce qui vous prend du temps, ce que vous voulez pour vos élèves. Choisissez ce qui vous convient le mieux.</p>
+</header>
+<div class="grid2" style="align-items:start">
+  <div class="card"><span class="tag">Option 1</span><h3>Réserver un premier échange</h3><p class="muted">30 minutes pour faire connaissance et parler de votre programme. Du lundi au jeudi, de 13 h à 18 h.</p><iframe title="Réserver un premier échange" src="https://calendly.com/laurettedubreuil/audit-d-organisation-offert?hide_gdpr_banner=1&amp;primary_color=e80675" style="width:100%;height:680px;border:0;border-radius:16px" loading="lazy"></iframe></div>
+  <div class="card f"><span class="tag f">Option 2</span><h3>M'écrire</h3>
+    <form class="form" id="contactForm"><input type="hidden" name="type" value="contact">
+      <div class="grid2"><label>Prénom<input name="prenom" required></label><label>Nom<input name="nom" required></label></div>
+      <label>Email<input name="email" type="email" required></label>
+      <label>Votre programme (nom ou lien)<input name="programme"></label>
+      <div><div style="font-size:14px;font-weight:600;margin-bottom:6px">Où en est votre programme ?</div><div class="chips"><label><input type="radio" name="situation" value="Je lance">Je lance</label><label><input type="radio" name="situation" value="Je refonds">Je refonds</label><label><input type="radio" name="situation" value="Ça tourne">Ça tourne</label><label><input type="radio" name="situation" value="Mon équipe grandit">Mon équipe grandit</label></div></div>
+      <div><div style="font-size:14px;font-weight:600;margin-bottom:6px">Vous avez besoin de</div><div class="chips"><label><input type="radio" name="besoin" value="Customer Success">Customer Success</label><label><input type="radio" name="besoin" value="Delivery">Delivery</label><label><input type="radio" name="besoin" value="Les deux">Les deux</label><label><input type="radio" name="besoin" value="Je ne sais pas encore">Je ne sais pas encore</label></div></div>
+      <label>Votre message<textarea name="message"></textarea></label>
+      <button class="btn pri" style="justify-self:start;border:0;cursor:pointer;font:inherit;font-weight:700">Envoyer →</button>
+    </form></div>
+</div>
+</div>
+<section><div class="wrap">
+  <h2>Et <span class="c">ensuite ?</span></h2>
+  <ol class="timeline"><li><h3>Je vous réponds sous 48 h</h3></li><li><h3>Premier échange sur votre programme</h3></li><li><h3>Je vous envoie une proposition adaptée</h3></li></ol>
+</div></section>
+<section class="soft"><div class="wrap grid2">
+  <div class="card"><span class="tag">Email</span><h3>auupette@gmail.com</h3></div>
+  <div class="card f"><span class="tag f">LinkedIn</span><h3>Laurette Dubreuil</h3></div>
+</div></section>
+<div class="wrap"><footer><b style="color:var(--blue)">AUP Group</b><span>Laurette Dubreuil</span><a href="mailto:auupette@gmail.com">auupette@gmail.com</a><a href="https://www.linkedin.com/in/laurettedubreuil/" target="_blank" rel="noopener">LinkedIn</a><a href="mentions-legales.html">Mentions légales</a><a href="confidentialite.html">Confidentialité</a><a href="cgv.html">CGV</a></footer></div>
+<script>
+document.getElementById('contactForm').addEventListener('submit',async e=>{e.preventDefault();const f=e.target;const b=f.querySelector('button');b.disabled=true;b.textContent='Envoi…';
+try{await fetch('https://hook.eu1.make.com/c5jgyjh8avws647motgzfvxpsve6bvpm',{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(f))});f.innerHTML='<p class="hand" style="color:var(--fuchsia);font-size:28px">Merci ! Je vous réponds sous 48 h.</p>'}
+catch(err){b.disabled=false;b.textContent='Envoyer →';alert('Envoi impossible, écrivez-moi à auupette@gmail.com')}});
+</script>
+</body></html>

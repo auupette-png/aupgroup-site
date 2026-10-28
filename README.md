@@ -1,9 +1,5 @@
-# AUP Group · aupgroup.fr
+# aupgroup.fr
 
-Site de Laurette Dubreuil (AUP Group) : site statique (HTML, CSS, JavaScript), sans étape de build.
+Site de Laurette Dubreuil (AUP Group) : Customer Success et Delivery pour les programmes de formation.
 
-- `index.html` : accueil (film d'ouverture piloté par le défilement)
-- pages : accompagnements (`programme-cle-en-main`, `csm-pilotage`, `evenements`, `organisation-ia`), `realisations`, `a-propos`, `quiz`, pages légales
-- `assets/` : images et vidéos
-
-Hébergement : Vercel (déploiement automatique depuis la branche `main`).
+Site statique (HTML + styles.css), hébergé sur Vercel. Les formulaires (contact, ressources gratuites) envoient vers un webhook Make, qui écrit dans le Google Sheet « Site AUP Group · Contacts et ressources ».
