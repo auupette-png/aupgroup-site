@@ -47,7 +47,7 @@ document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.que
 document.querySelectorAll('#t-a .filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#t-a .filters button').forEach(x=>x.setAttribute('aria-pressed',x===b));const f=b.dataset.f;document.querySelectorAll('#t-a [data-cat]').forEach(a=>a.style.display=(f==='all'||a.dataset.cat===f)?'':'none')});
 document.querySelectorAll('.dl').forEach(b=>b.onclick=()=>{const t=b.closest('.card').querySelector('h3').textContent;document.getElementById('dlRes').value=t;document.getElementById('dlName').textContent=t;const f=document.getElementById('dlform');f.hidden=false;f.scrollIntoView({behavior:'smooth',block:'center'})});
 document.getElementById('dlForm').addEventListener('submit',async e=>{e.preventDefault();const f=e.target;const b=f.querySelector('button');b.disabled=true;b.textContent='Envoi…';
-try{await fetch('https://hook.eu1.make.com/c5jgyjh8avws647motgzfvxpsve6bvpm',{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(f))});f.innerHTML='<p class="hand" style="color:var(--fuchsia);font-size:28px">Merci ! La ressource arrive dans votre boîte mail.</p>'}
+try{await fetch('https://hook.eu1.make.com/c5jgyjh8avws647motgzfvxpsve6bvpm',{method:'POST',mode:'no-cors',body:new URLSearchParams(new FormData(f))});f.innerHTML='<p class="hand" style="color:var(--fuchsia);font-size:28px">Merci ! Vous recevrez la ressource par e-mail très bientôt.</p>'}
 catch(err){b.disabled=false;b.textContent='Recevoir la ressource →'}});
 </script>
 </body></html>
