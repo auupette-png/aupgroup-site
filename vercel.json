@@ -1,13 +1,57 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "headers": [{"source": "/img/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=86400"}]}],
+  "headers": [
+    {
+      "source": "/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    }
+  ],
   "redirects": [
-    {"source": "/index", "destination": "/", "permanent": true},
-    {"source": "/csm-pilotage", "destination": "/customer-success", "permanent": true},
-    {"source": "/programme-cle-en-main", "destination": "/delivery", "permanent": true},
-    {"source": "/organisation-ia", "destination": "/delivery", "permanent": true},
-    {"source": "/evenements", "destination": "/realisations", "permanent": true},
-    {"source": "/quiz", "destination": "/ressources", "permanent": true}
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/csm-pilotage",
+      "destination": "/customer-success",
+      "permanent": true
+    },
+    {
+      "source": "/programme-cle-en-main",
+      "destination": "/delivery",
+      "permanent": true
+    },
+    {
+      "source": "/organisation-ia",
+      "destination": "/delivery",
+      "permanent": true
+    },
+    {
+      "source": "/evenements",
+      "destination": "/realisations",
+      "permanent": true
+    },
+    {
+      "source": "/quiz",
+      "destination": "/ressources",
+      "permanent": true
+    },
+    {
+      "source": "/ressources.html",
+      "destination": "/ressources",
+      "permanent": true
+    },
+    {
+      "source": "/ressources/index",
+      "destination": "/ressources",
+      "permanent": true
+    }
   ]
 }
