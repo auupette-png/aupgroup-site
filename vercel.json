@@ -10,6 +10,15 @@
           "value": "public, max-age=86400"
         }
       ]
+    },
+    {
+      "source": "/ressources/pdf/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
     }
   ],
   "redirects": [
