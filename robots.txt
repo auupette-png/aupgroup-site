@@ -1,0 +1,6 @@
+# aupgroup.fr : le site est ouvert aux moteurs de recherche et aux assistants IA
+# (Google, Bing, ChatGPT, Perplexity, Claude, Gemini...), pour être trouvé et cité.
+User-agent: *
+Allow: /
+
+Sitemap: https://aupgroup.fr/sitemap.xml

@@ -1,11 +1,13 @@
 {
-  "cleanUrls": false,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [{"source": "/img/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=86400"}]}],
   "redirects": [
-    {"source": "/csm-pilotage.html", "destination": "/customer-success.html", "permanent": true},
-    {"source": "/programme-cle-en-main.html", "destination": "/delivery.html", "permanent": true},
-    {"source": "/organisation-ia.html", "destination": "/delivery.html", "permanent": true},
-    {"source": "/evenements.html", "destination": "/realisations.html", "permanent": true},
-    {"source": "/quiz.html", "destination": "/ressources.html", "permanent": true}
+    {"source": "/index", "destination": "/", "permanent": true},
+    {"source": "/csm-pilotage", "destination": "/customer-success", "permanent": true},
+    {"source": "/programme-cle-en-main", "destination": "/delivery", "permanent": true},
+    {"source": "/organisation-ia", "destination": "/delivery", "permanent": true},
+    {"source": "/evenements", "destination": "/realisations", "permanent": true},
+    {"source": "/quiz", "destination": "/ressources", "permanent": true}
   ]
 }
